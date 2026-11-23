@@ -1,0 +1,23 @@
+.route { position: relative; display: grid; gap: 40px; padding: 20px 0; }
+.route-line { position: absolute; left: 50%; top: 0; bottom: 0; width: 40px; height: 100%; transform: translateX(-50%); overflow: visible; }
+.wp { display: grid; grid-template-columns: 1fr 80px 1fr; align-items: center; position: relative; }
+.wp-pin {
+  grid-column: 2; justify-self: center; width: 64px; height: 64px; border-radius: 50%; background: var(--ink); border: 1.5px solid var(--line-strong);
+  display: grid; place-items: center; font-family: var(--mono); font-size: 13px; position: relative; z-index: 1;
+  transition: background 0.5s, border-color 0.5s, color 0.5s, transform 0.5s var(--ease);
+}
+.wp-pin::after { content: ""; position: absolute; inset: -9px; border-radius: 50%; border: 1px dashed var(--line-strong); }
+.wp.on .wp-pin { background: var(--hivis); border-color: var(--hivis); color: var(--ink); transform: scale(1.08); }
+.wp-card { grid-column: 1; grid-row: 1; text-align: right; padding: 26px 28px; border: 1px solid var(--line); border-radius: 14px; background: var(--ink-2); opacity: 0.35; transform: translateX(-20px); transition: opacity 0.6s, transform 0.6s var(--ease), border-color 0.6s; }
+.wp.right .wp-card { grid-column: 3; text-align: left; transform: translateX(20px); }
+.wp.on .wp-card { opacity: 1; transform: none; border-color: var(--line-strong); }
+.wp-card h3 { font-size: 30px; letter-spacing: -0.025em; margin-bottom: 8px; }
+.wp-card p { color: var(--muted); font-size: 15.5px; }
+.wp-card .out { margin-top: 14px; font-family: var(--mono); font-size: 10.5px; color: var(--contour); letter-spacing: 0.06em; }
+
+@media (max-width: 800px) {
+  .route-line { left: 32px; }
+  .wp { grid-template-columns: 64px 1fr; gap: 18px; }
+  .wp-pin { grid-column: 1; }
+  .wp-card, .wp.right .wp-card { grid-column: 2; grid-row: 1; text-align: left; transform: translateY(16px); }
+}

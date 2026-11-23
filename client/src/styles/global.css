@@ -1,0 +1,111 @@
+/* ───────── DESIGN TOKENS ─────────
+   Palette = a topographic map sheet:
+   forest-green ground, terrain amber accent, leaf green vegetation,
+   contour brown lines, river blue water, topo-paper cream.
+   (--hivis is the historical name of the PRIMARY ACCENT = terrain amber.) */
+:root {
+  --ink: #0B1A14;          /* deep forest — page background */
+  --ink-2: #11251C;        /* moss — cards / panels */
+  --ink-3: #1A3428;
+  --line: rgba(241, 235, 216, 0.12);
+  --line-strong: rgba(241, 235, 216, 0.28);
+  --paper: #F1EBD8;        /* topo-sheet cream */
+  --paper-2: #E6DCC2;
+  --paper-ink: #1F2A1E;    /* olive-black print ink */
+  --paper-muted: #55604F;
+  --muted: #9DB0A2;
+  --soft: #CAD5C7;
+  --hivis: #E9A23B;        /* terrain amber — primary accent */
+  --hivis-dark: #9A5B2E;   /* sienna — accent on paper */
+  --hivis-soft: rgba(233, 162, 59, 0.14);
+  --contour: #C49A6C;      /* contour brown */
+  --lime: #A3D16B;         /* leaf green */
+  --forest: #3F8F5B;       /* tree cover */
+  --water: #5DB7DE;        /* river blue */
+  --display: "Bricolage Grotesque", system-ui, sans-serif;
+  --serif: "Instrument Serif", Georgia, serif;
+  --mono: "JetBrains Mono", ui-monospace, monospace;
+  --gutter: clamp(16px, 4vw, 56px);
+  --max: 1320px;
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--display);
+  font-size: 17px;
+  line-height: 1.55;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+button { font: inherit; cursor: pointer; color: inherit; background: none; border: 0; }
+img, svg { display: block; max-width: 100%; }
+::selection { background: var(--hivis); color: var(--ink); }
+:focus-visible { outline: 2px solid var(--hivis); outline-offset: 3px; }
+
+
+/* ───────── LAYOUT PRIMITIVES ───────── */
+.wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
+.section { padding: clamp(80px, 11vw, 140px) 0; position: relative; overflow-x: clip; }
+.section.tight-top { padding-top: 40px; }
+.bordered { border-top: 1px solid var(--line); }
+.paper { background: var(--paper); color: var(--paper-ink); }
+.paper .eyebrow { color: var(--hivis-dark); }
+.paper .title .serif { color: var(--hivis-dark); }
+.paper .lede { color: var(--paper-muted); }
+
+.mono { font-family: var(--mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; }
+.serif { font-family: var(--serif); font-weight: 400; font-style: italic; letter-spacing: -0.01em; }
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--hivis);
+}
+.eyebrow::before { content: ""; width: 8px; height: 8px; border: 1.5px solid currentColor; transform: rotate(45deg); }
+.title {
+  font-size: clamp(38px, 6vw, 84px); line-height: 0.95; letter-spacing: -0.035em; font-weight: 700;
+  font-variation-settings: "opsz" 96; margin-top: 20px;
+}
+.title .serif { font-weight: 400; color: var(--hivis); }
+.lede { color: var(--muted); max-width: 520px; margin-top: 22px; }
+.head-row { display: flex; justify-content: space-between; align-items: end; gap: 32px; flex-wrap: wrap; margin-bottom: clamp(40px, 6vw, 70px); }
+
+/* ───────── BUTTONS ───────── */
+.btn {
+  display: inline-flex; align-items: center; gap: 10px; padding: 13px 22px; border-radius: 999px;
+  font-weight: 600; font-size: 15px; border: 1.5px solid transparent;
+  transition: transform 0.2s, background 0.2s, color 0.2s, border-color 0.2s;
+}
+.btn-hivis { background: var(--hivis); color: var(--ink); }
+.btn-hivis:hover { transform: translateY(-2px); background: #F2B65A; }
+.btn-ghost { border-color: var(--line-strong); color: var(--paper); }
+.btn-ghost:hover { border-color: var(--paper); }
+.paper .btn-ghost { border-color: var(--paper-ink); color: var(--paper-ink); }
+.btn .arr { transition: transform 0.2s; }
+.btn:hover .arr { transform: translateX(4px); }
+.btn[disabled] { opacity: 0.6; pointer-events: none; }
+
+.chip {
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase;
+  padding: 6px 11px; border: 1px solid var(--line); border-radius: 4px; color: var(--muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}
+
+/* ───────── CARD TEXTURE ─────────
+   faint 24px survey grid on every dark panel / card */
+.pc, .plat, .ins, .form, .wp-card, .sec-panel, .pm-item.on, .console, .careers {
+  background-image:
+    linear-gradient(rgba(241, 235, 216, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(241, 235, 216, 0.025) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+.pc.challenge { background-image: linear-gradient(160deg, rgba(233, 162, 59, 0.14), transparent 60%), linear-gradient(rgba(241, 235, 216, 0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(241, 235, 216, 0.025) 1px, transparent 1px); background-size: auto, 24px 24px, 24px 24px; }
+.plat.big { background-image: linear-gradient(160deg, rgba(63, 143, 91, 0.28), transparent 60%), linear-gradient(rgba(241, 235, 216, 0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(241, 235, 216, 0.025) 1px, transparent 1px); background-size: auto, 24px 24px, 24px 24px; }
+.careers { background-image: linear-gradient(120deg, rgba(233, 162, 59, 0.18), rgba(63, 143, 91, 0.16)), linear-gradient(rgba(241, 235, 216, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(241, 235, 216, 0.03) 1px, transparent 1px); background-size: auto, 24px 24px, 24px 24px; }

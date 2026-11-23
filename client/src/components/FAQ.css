@@ -1,0 +1,10 @@
+.faq-grid { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 60px; align-items: start; }
+.faq-list { border-top: 1px solid var(--line-strong); }
+.faq-item { border-bottom: 1px solid var(--line); }
+.faq-item button { width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 24px 0; text-align: left; font-size: 19px; font-weight: 600; letter-spacing: -0.01em; }
+.faq-item i { position: relative; width: 28px; height: 28px; border: 1.5px solid var(--line-strong); border-radius: 50%; flex-shrink: 0; transition: transform 0.35s var(--ease), background 0.3s, border-color 0.3s; }
+.faq-item i::before, .faq-item i::after { content: ""; position: absolute; left: 50%; top: 50%; width: 10px; height: 1.5px; background: currentColor; transform: translate(-50%, -50%); }
+.faq-item i::after { transform: translate(-50%, -50%) rotate(90deg); }
+.faq-item.open i { transform: rotate(45deg); background: var(--hivis); border-color: var(--hivis); color: var(--ink); }
+.faq-item p { color: var(--muted); padding: 0 50px 24px 0; }
+@media (max-width: 900px) { .faq-grid { grid-template-columns: 1fr; gap: 30px; } }

@@ -1,0 +1,38 @@
+.plat-grid { display: grid; grid-template-columns: 1.25fr 1fr 1fr; grid-auto-rows: auto; gap: 18px; perspective: 1200px; }
+.plat-cell.big { grid-row: span 2; }
+.plat-cell { display: flex; }
+.plat {
+  flex: 1; border: 1px solid var(--line); border-radius: 16px; padding: 30px; background: var(--ink-2); position: relative; overflow: hidden;
+  display: flex; flex-direction: column; min-height: 270px; transform-style: preserve-3d; transition: border-color 0.3s;
+}
+.plat::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity 0.3s;
+  background: radial-gradient(400px circle at var(--gx, 50%) var(--gy, 50%), rgba(233,162,59,0.12), transparent 50%);
+}
+.plat:hover { border-color: var(--line-strong); }
+.plat:hover::before { opacity: 1; }
+.plat.big { background: linear-gradient(160deg, #1C3A2A, var(--ink-2) 60%); }
+.plat .tag { font-family: var(--mono); font-size: 10.5px; color: var(--lime); letter-spacing: 0.1em; }
+.plat h3 { font-size: clamp(24px, 2.5vw, 34px); letter-spacing: -0.03em; line-height: 1.05; margin: 12px 0; }
+.plat p { color: var(--muted); font-size: 15px; max-width: 420px; }
+.plat .viz { margin-top: auto; padding-top: 26px; transform: translateZ(30px); }
+.plat .viz svg { width: 100%; height: auto; }
+.plat .more { margin-top: 20px; font-size: 14px; font-weight: 600; color: var(--hivis); }
+
+.viz-dash { animation: dash 1.2s linear infinite; }
+@keyframes dash { to { stroke-dashoffset: -18; } }
+.viz-pulse { animation: vpulse 2s ease-in-out infinite; }
+@keyframes vpulse { 50% { opacity: 0.35; } }
+.viz-ping { transform-box: fill-box; transform-origin: center; animation: ping 2s ease-out infinite; }
+@keyframes ping { 0% { transform: scale(0.6); opacity: 1; } 100% { transform: scale(1.6); opacity: 0; } }
+.viz-spark { stroke-dasharray: 80; animation: spark 3s ease-in-out infinite; }
+@keyframes spark { 0% { stroke-dashoffset: 80; } 60%, 100% { stroke-dashoffset: 0; } }
+
+@media (max-width: 1080px) {
+  .plat-grid { grid-template-columns: 1fr 1fr; }
+  .plat-cell.big { grid-row: auto; grid-column: span 2; }
+}
+@media (max-width: 640px) {
+  .plat-grid { grid-template-columns: 1fr; }
+  .plat-cell.big { grid-column: auto; }
+}

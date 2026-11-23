@@ -1,0 +1,33 @@
+.nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; border-bottom: 1px solid transparent; transition: background 0.3s, border-color 0.3s; }
+.nav.scrolled { background: rgba(11,26,20,0.82); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-color: var(--line); }
+.nav-progress { position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: var(--hivis); transform-origin: left; }
+.nav-inner { display: flex; align-items: center; justify-content: space-between; height: 74px; gap: 24px; }
+.logo { display: flex; align-items: center; gap: 12px; font-weight: 700; letter-spacing: -0.02em; font-size: 20px; }
+.logo small { display: block; font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.18em; color: var(--muted); font-weight: 400; margin-top: 2px; }
+.nav-links { display: flex; gap: 28px; font-size: 15px; }
+.nav-links a { position: relative; opacity: 0.8; transition: opacity 0.2s; }
+.nav-links a:hover { opacity: 1; }
+.nav-links a::after { content: ""; position: absolute; left: 0; right: 100%; bottom: -6px; height: 1.5px; background: var(--hivis); transition: right 0.3s; }
+.nav-links a:hover::after { right: 0; }
+.nav-right { display: flex; align-items: center; gap: 18px; }
+.coord-readout { font-family: var(--mono); font-size: 11px; color: var(--muted); white-space: nowrap; }
+.coord-readout b { color: var(--paper); font-weight: 500; }
+.menu-btn { display: none; width: 44px; height: 44px; border: 1.5px solid var(--line-strong); border-radius: 50%; place-items: center; }
+.menu-btn span, .menu-btn span::before { display: block; width: 16px; height: 1.5px; background: var(--paper); position: relative; transition: transform 0.3s; }
+.menu-btn span::before { content: ""; position: absolute; top: 5px; }
+.menu-btn span { transform: translateY(-2.5px); }
+.menu-btn span.x { transform: rotate(45deg); }
+.menu-btn span.x::before { transform: translateY(-5px) rotate(-90deg); }
+
+@media (max-width: 1180px) { .coord-readout { display: none; } }
+@media (max-width: 900px) {
+  .nav-links {
+    display: none; position: absolute; top: 74px; left: 0; right: 0; flex-direction: column; gap: 0;
+    background: var(--ink); border-bottom: 1px solid var(--line); padding: 8px var(--gutter) 20px;
+  }
+  .nav-links.open { display: flex; }
+  .nav-links a { padding: 14px 0; border-bottom: 1px solid var(--line); font-size: 18px; }
+  .nav-links a::after { display: none; }
+  .menu-btn { display: grid; }
+  .nav-cta { display: none; }
+}

@@ -1,0 +1,14 @@
+.why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+.why-sticky { position: sticky; top: 110px; }
+.dial { display: flex; align-items: center; gap: 22px; margin-top: 34px; }
+.dial svg { width: 190px; flex-shrink: 0; }
+.dial-read b { display: block; font-size: 40px; letter-spacing: -0.03em; line-height: 1; }
+.dial-read span { font-family: var(--mono); font-size: 11px; color: var(--paper-muted); letter-spacing: 0.06em; text-transform: uppercase; }
+.creds { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 30px; }
+.creds span { font-family: var(--mono); font-size: 11px; padding: 8px 12px; border: 1.5px solid var(--paper-ink); border-radius: 4px; letter-spacing: 0.06em; }
+.why-item { padding: 34px 0; border-bottom: 1.5px solid rgba(26, 31, 28, 0.18); display: grid; grid-template-columns: 60px 1fr; gap: 20px; }
+.why-item:first-child { padding-top: 0; }
+.why-item .num { font-family: var(--serif); font-style: italic; font-size: 44px; line-height: 1; color: var(--hivis-dark); }
+.why-item h4 { font-size: 24px; letter-spacing: -0.02em; margin-bottom: 8px; }
+.why-item p { color: var(--paper-muted); font-size: 15.5px; }
+@media (max-width: 1000px) { .why-grid { grid-template-columns: 1fr; gap: 50px; } .why-sticky { position: static; } }
